@@ -4,5 +4,3 @@ examples/node_modules/
 gh-pages
 node_modules/
 npm-debug.log
-dev/app.js
-dev/build.js
