@@ -13,7 +13,7 @@ if (typeof AFRAME === 'undefined') {
     throw new Error('Component attempted to register before AFRAME was available.');
 }
 
-AFRAME.registerComponent('time-gradation-component', {
+AFRAME.registerComponent('time-counter', {
     schema: {},
     init: function init() {
         this.data.count = 0;
@@ -46,10 +46,9 @@ module.exports = function parse(params){
       var template = "varying vec2 vUV; // [0.0, 0.0] ~ [1.0, 1.0] \n" +
 " \n" +
 "void main(void) { \n" +
-"	vec2 p = (vUV * 2.0) - vec2(1.0, 1.0); // [-1.0, 1.0] ~ [1.0, 1.0] \n" +
-"	float x = p[0]; \n" +
-"	float y = p[1]; \n" +
-"    gl_FragColor = vec4(abs(x), abs(y), 0.5, 0.9); //(Red, Green, Blue, Alpha) \n" +
+"	float x = vUV[0]; \n" +
+"	float y = vUV[1]; \n" +
+"    gl_FragColor = vec4(x, y, 0.5, 1.0); //(Red, Green, Blue, Alpha) \n" +
 "} \n" +
 " \n" 
       params = params || {}
@@ -69,7 +68,7 @@ module.exports = function parse(params){
 "	vec2 p = (vUV * 2.0) - vec2(1.0, 1.0); // [-1.0, 1.0] ~ [1.0, 1.0] \n" +
 "	float x = p[0]; \n" +
 "	float y = p[1]; \n" +
-"    gl_FragColor = vec4(abs(x), abs(y), sin(time), 0.9); //(Red, Green, Blue, Alpha) \n" +
+"    gl_FragColor = vec4(abs(x), abs(y), sin(time) * 0.5 + 0.5, 0.9); //(Red, Green, Blue, Alpha) \n" +
 "} \n" +
 " \n" 
       params = params || {}
@@ -86,10 +85,11 @@ module.exports = function parse(params){
 "uniform float time; \n" +
 " \n" +
 "void main(void) { \n" +
+"	// position: vec3([-0.5 ~ 0.5], [-0.5 ~ 0.5], [-0.5 ~ 0.5]) \n" +
 "	float Pi = 3.141592; \n" +
-"	float tx = position.x * abs(sin(position.y * Pi + time)); \n" +
+"	float tx = position.x * (abs(sin(position.y * Pi + time)) * 0.7 + 0.3); \n" +
 "	float ty = position.y; \n" +
-"	float tz = position.z; \n" +
+"	float tz = position.z * (abs(sin(position.y * Pi + time)) * 0.7 + 0.3); \n" +
 "	vec3 transform = vec3(tx, ty, tz); \n" +
 "    gl_Position = projectionMatrix * modelViewMatrix * vec4(transform, 1.0); \n" +
 "    vUV = uv; \n" +
@@ -111,10 +111,9 @@ if (typeof AFRAME === 'undefined') {
 }
 
 AFRAME.registerShader('red-shader', {
-    vertexShader: ['varying vec2 vUV;', 'void main(void) {', '  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);', '  vUV = uv;', '}'].join('\n'),
+    vertexShader: ['varying vec2 vUV;', 'void main(void) {', '  gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);', '}'].join('\n'),
 
     fragmentShader: ['void main(void) {', '    gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0); //(Red, Green, Blue, Alpha)', '}'].join('\n')
-
 });
 
 AFRAME.registerShader('gradation-shader', {
