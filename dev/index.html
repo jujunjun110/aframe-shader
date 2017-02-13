@@ -10,8 +10,10 @@
 <body>
     <a-scene>
         <a-assets></a-assets>
-        <a-plane material="shader:red-shader" position="-2 0 0"></a-plane>
-        <a-plane material="shader:gradation-shader" position="0 0 0"></a-plane>
+        <a-box material="shader:red-shader" position="-3 1.6 0"></a-box>
+        <a-box material="shader:gradation-shader" position="-1 1.6 0"></a-box>
+        <a-box material="shader:time-gradation-shader; time: 0" time-gradation-component position="1 1.6 0"></a-box>
+        <a-cylinder material="shader:time-transform-shader; time: 0" time-gradation-component position="3 1.6 0"></a-cylinder>
         <a-camera position="0 0 5"></a-camera>
         <a-sky material="color:#FFC"></a-sky>
     </a-scene>
