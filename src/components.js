@@ -2,7 +2,7 @@ if (typeof AFRAME === 'undefined') {
     throw new Error('Component attempted to register before AFRAME was available.')
 }
 
-AFRAME.registerComponent('time-gradation-component', {
+AFRAME.registerComponent('time-counter', {
     schema: {},
     init: function () {
         this.data.count = 0

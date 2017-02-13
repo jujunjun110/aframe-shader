@@ -2,18 +2,17 @@
 
 <head>
     <title>project-name</title>
-    <script src="./build.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/0.4.0/aframe.min.js"></script>
     <script src="./app.js"></script>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
     <a-scene>
-        <a-assets></a-assets>
         <a-box material="shader:red-shader" position="-3 1.6 0"></a-box>
         <a-box material="shader:gradation-shader" position="-1 1.6 0"></a-box>
-        <a-box material="shader:time-gradation-shader; time: 0" time-gradation-component position="1 1.6 0"></a-box>
-        <a-cylinder material="shader:time-transform-shader; time: 0" time-gradation-component position="3 1.6 0"></a-cylinder>
+        <a-box material="shader:time-gradation-shader; time: 0" time-counter position="1 1.6 0"></a-box>
+        <a-cylinder material="shader:time-transform-shader; time: 0" time-counter position="3 1.6 0"></a-cylinder>
         <a-camera position="0 0 5"></a-camera>
         <a-sky material="color:#FFC"></a-sky>
     </a-scene>
