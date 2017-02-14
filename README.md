@@ -1,6 +1,10 @@
 
 # aframe-shader
 
+aframeでシェーダーを自作するデモです。
+
+**[Demo](https://jujunjun110.github.io/aframe-shader/dev/)**
+
 ## プロジェクトのインストール
 
 1. git clone 
@@ -21,12 +25,4 @@
  - dev/index.html ... メインのHTMLファイル。ここは直接編集します。
  - dev/app.js ... ブラウザで実行可能な形にビルドされた自作スクリプト	。自分では編集しません。
  - dev/build.js ... ブラウザで実行可能な形にビルドされた外部スクリプト。自分では編集しません。
-- dist以下 ... 本番用。dev以下のものをより高速に実行できるようにビルドしなおす予定。
- - TO BE DONE !
-
 `npm run build` することで `src/require.js` が `dev/build.js` に、 `src/app.js` が `dev/app.js` にそれぞれビルドされます。
-
-本番環境へは `dev/` 以下のみアップロードすることで動くようになっています。
-
-アプリケーションでnpmモジュールを利用したいときは `npm install -S {packagename}`としてインストールしたのち、
-`src/require.js` に `require("{packagename}");` の一行を追加しましょう
